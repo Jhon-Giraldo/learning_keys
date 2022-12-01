@@ -1,3 +1,5 @@
+import 'dart:js_util';
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 
@@ -23,14 +25,22 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  List<Widget> boxes = [
-    // StatelessColorBox(),
-    // StatelessColorBox(),
-    StatefulColorBox(key: UniqueKey()),
-    StatefulColorBox(key: UniqueKey()),
-  ];
 
+
+class _HomePageState extends State<HomePage> {
+  
+  late List<Widget> boxes;
+
+  @override
+  void initState() {
+    super.initState();
+    boxes = [
+      //StatelessColorBox(randomColorBoxes: randomColor()),
+      //StatelessColorBox(randomColorBoxes: randomColor()),
+    const StatefulColorBox(key: ValueKey('Colorful1')),
+    const StatefulColorBox(key: ValueKey('Colorful2')),
+  ];
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -62,12 +72,15 @@ class _HomePageState extends State<HomePage> {
 
 // StalessWidgetExample
 class StatelessColorBox extends StatelessWidget {
-  StatelessColorBox({super.key});
+  const StatelessColorBox({super.key, required this.randomColorBoxes});
 
-  Color randomColorBoxes = randomColor();
+  final Color randomColorBoxes;
 
   @override
   Widget build(BuildContext context) {
+
+    //final randomColorBoxes = randomColor();
+
     return Container(
       color: randomColorBoxes,
       child: const Padding(padding: EdgeInsets.all(85.0)),
@@ -108,7 +121,7 @@ class _StatefulColorBoxState extends State<StatefulColorBox> {
 
 //RandomColor
 randomColor(){
-  var randomColor = Random();
+  Random randomColor = Random();
   return Color.fromRGBO(
     randomColor.nextInt(255), 
     randomColor.nextInt(255), 
