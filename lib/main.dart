@@ -25,8 +25,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> boxes = [
-    const StatelessColorBox(),
-    const StatelessColorBox(),
+    StatelessColorBox(),
+    StatelessColorBox(),
+    //const StatefullColorBox(),
+    //const StatefullColorBox(),
   ];
 
   
@@ -57,18 +59,54 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+
+// StalessWidgetExample
+
 class StatelessColorBox extends StatelessWidget {
-  const StatelessColorBox({super.key});
+  StatelessColorBox({super.key});
+
+  Color randomColorBoxes = randomColor();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: randomColor(),
+      color: randomColorBoxes,
       child: const Padding(padding: EdgeInsets.all(85.0)),
-      
     );
   }
+
 }
+
+// StatefulWidgetExample
+
+class StatefullColorBox extends StatefulWidget {
+  const StatefullColorBox({super.key});
+
+
+  @override
+  State<StatefullColorBox> createState() => _StatefullColorBoxState();
+}
+
+class _StatefullColorBoxState extends State<StatefullColorBox> {
+
+  late Color randomColorBoxes;
+
+  @override
+  void initState() {
+    super.initState();
+    randomColorBoxes = randomColor();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: randomColorBoxes,
+      child: const Padding(padding: EdgeInsets.all(85.0)),
+    );
+  }
+
+}
+
 
 randomColor(){
   var randomColor = Random();
