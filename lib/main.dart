@@ -25,10 +25,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> boxes = [
-    StatelessColorBox(),
-    StatelessColorBox(),
-    //const StatefullColorBox(),
-    //const StatefullColorBox(),
+    // StatelessColorBox(),
+    // StatelessColorBox(),
+    StatefulColorBox(key: UniqueKey()),
+    StatefulColorBox(key: UniqueKey()),
   ];
 
   
@@ -61,7 +61,6 @@ class _HomePageState extends State<HomePage> {
 
 
 // StalessWidgetExample
-
 class StatelessColorBox extends StatelessWidget {
   StatelessColorBox({super.key});
 
@@ -78,16 +77,15 @@ class StatelessColorBox extends StatelessWidget {
 }
 
 // StatefulWidgetExample
-
-class StatefullColorBox extends StatefulWidget {
-  const StatefullColorBox({super.key});
+class StatefulColorBox extends StatefulWidget {
+  const StatefulColorBox({super.key});
 
 
   @override
-  State<StatefullColorBox> createState() => _StatefullColorBoxState();
+  State<StatefulColorBox> createState() => _StatefulColorBoxState();
 }
 
-class _StatefullColorBoxState extends State<StatefullColorBox> {
+class _StatefulColorBoxState extends State<StatefulColorBox> {
 
   late Color randomColorBoxes;
 
@@ -108,6 +106,7 @@ class _StatefullColorBoxState extends State<StatefullColorBox> {
 }
 
 
+//RandomColor
 randomColor(){
   var randomColor = Random();
   return Color.fromRGBO(
